@@ -6,7 +6,7 @@ import React, { useState, useEffect } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
-const Stack = createNativeStackNavigator();
+const AuthStack = createNativeStackNavigator();
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -30,7 +30,10 @@ export default function App() {
 
   return (
     <NavigationContainer>
-      <Stack.Navigator>{/* <LoginScreen /> */}</Stack.Navigator>
+      <AuthStack.Navigator>
+        <AuthStack.Screen name="Login" component={LoginScreen} />
+        <AuthStack.Screen name="Registration" component={RegistrationScreen} />
+      </AuthStack.Navigator>
     </NavigationContainer>
   );
 }
