@@ -49,59 +49,65 @@ export const LoginScreen = () => {
   }, []);
 
   return (
-    <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-      <ImageBackground
-        source={image}
-        resizeMode="cover"
-        style={styles.backgroundImage}
-      >
-        <KeyboardAvoidingView behavior={Platform.OS === "ios" && "padding"}>
-          <View
-            style={{ ...styles.wrap, paddingBottom: isShowKeyboard ? 0 : 45 }}
-          >
-            <Text style={styles.title}>Sign In</Text>
-            <View style={styles.inputWrap}>
-              <TextInput
-                style={styles.input}
-                placeholder="Email"
-                value={state.email}
-                onFocus={() => setIsShowKeyboard(true)}
-                onChangeText={(value) =>
-                  setState((prevState) => ({ ...prevState, email: value }))
-                }
-              />
-              <TextInput
-                style={styles.input}
-                placeholder="Пароль"
-                value={state.password}
-                secureTextEntry={true}
-                onFocus={() => setIsShowKeyboard(true)}
-                onChangeText={(value) =>
-                  setState((prevState) => ({ ...prevState, password: value }))
-                }
-              />
+    <View style={styles.container}>
+      <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+        <ImageBackground
+          source={image}
+          resizeMode="cover"
+          style={styles.backgroundImage}
+        >
+          <KeyboardAvoidingView behavior={Platform.OS === "ios" && "padding"}>
+            <View
+              style={{ ...styles.wrap, paddingBottom: isShowKeyboard ? 0 : 45 }}
+            >
+              <Text style={styles.title}>Sign In</Text>
+              <View style={styles.inputWrap}>
+                <TextInput
+                  style={styles.input}
+                  placeholder="Email"
+                  value={state.email}
+                  onFocus={() => setIsShowKeyboard(true)}
+                  onChangeText={(value) =>
+                    setState((prevState) => ({ ...prevState, email: value }))
+                  }
+                />
+                <TextInput
+                  style={styles.input}
+                  placeholder="Пароль"
+                  value={state.password}
+                  secureTextEntry={true}
+                  onFocus={() => setIsShowKeyboard(true)}
+                  onChangeText={(value) =>
+                    setState((prevState) => ({ ...prevState, password: value }))
+                  }
+                />
+              </View>
+              <View style={styles.btnWrap}>
+                <TouchableOpacity
+                  activeOpacity={0.7}
+                  style={styles.btnRegistration}
+                  onPress={() => keyboardHide()}
+                >
+                  <Text style={styles.btnText}>Sign up</Text>
+                </TouchableOpacity>
+              </View>
+              <Text style={styles.bottomText}>
+                Don't have an account? Sign up
+              </Text>
             </View>
-            <View style={styles.btnWrap}>
-              <TouchableOpacity
-                activeOpacity={0.7}
-                style={styles.btnRegistration}
-                onPress={() => keyboardHide()}
-              >
-                <Text style={styles.btnText}>Sign up</Text>
-              </TouchableOpacity>
-            </View>
-            <Text style={styles.bottomText}>
-              Don't have an account? Sign up
-            </Text>
-          </View>
-        </KeyboardAvoidingView>
-        <StatusBar style="auto" />
-      </ImageBackground>
-    </TouchableWithoutFeedback>
+          </KeyboardAvoidingView>
+          <StatusBar style="auto" />
+        </ImageBackground>
+      </TouchableWithoutFeedback>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#fff",
+  },
   backgroundImage: {
     flex: 1,
     resizeMode: "cover",
