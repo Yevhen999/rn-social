@@ -13,6 +13,7 @@ import {
   Dimensions,
   TouchableWithoutFeedback,
   ImageBackground,
+  Button,
 } from "react-native";
 
 const initialState = {
@@ -22,7 +23,8 @@ const initialState = {
 
 const image = require("../../assets/background.png");
 
-export const LoginScreen = () => {
+export const LoginScreen = ({ navigation }) => {
+  // console.log(navigation);
   const [isShowKeyboard, setIsShowKeyboard] = useState(false);
   const [state, setState] = useState(initialState);
 
@@ -91,9 +93,15 @@ export const LoginScreen = () => {
                   <Text style={styles.btnText}>Sign up</Text>
                 </TouchableOpacity>
               </View>
-              <Text style={styles.bottomText}>
-                Don't have an account? Sign up
-              </Text>
+              <TouchableOpacity
+                activeOpacity={0.7}
+                style={styles.signUpBtn}
+                onPress={() => navigation.navigate("Registration")}
+              >
+                <Text style={styles.signUpBtnText}>
+                  Don't have an account yet? Sign up
+                </Text>
+              </TouchableOpacity>
             </View>
           </KeyboardAvoidingView>
           <StatusBar style="auto" />
@@ -173,11 +181,13 @@ const styles = StyleSheet.create({
     fontFamily: "Roboto-Regular",
     fontSize: 16,
   },
-  bottomText: {
+  signUpBtn: {
     marginTop: 16,
+    textAlign: "center",
+  },
+  signUpBtnText: {
     fontFamily: "Roboto-Regular",
     fontSize: 16,
-    textAlign: "center",
     color: "#1B4371",
   },
 });

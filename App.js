@@ -1,12 +1,8 @@
-import RegistrationScreen from "./screens/auth/RegistrationScreen";
-import LoginScreen from "./screens/auth/LoginScreen";
 import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
 import React, { useState, useEffect } from "react";
 import { NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-
-const AuthStack = createNativeStackNavigator();
+import useRoute from "./router";
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -28,12 +24,7 @@ export default function App() {
     SplashScreen.hideAsync();
   }
 
-  return (
-    <NavigationContainer>
-      <AuthStack.Navigator>
-        <AuthStack.Screen name="Login" component={LoginScreen} />
-        <AuthStack.Screen name="Registration" component={RegistrationScreen} />
-      </AuthStack.Navigator>
-    </NavigationContainer>
-  );
+  const routing = useRoute({});
+
+  return <NavigationContainer>{routing}</NavigationContainer>;
 }

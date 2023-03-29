@@ -24,7 +24,7 @@ const initialState = {
   password: "",
 };
 
-export const RegistrationScreen = () => {
+export const RegistrationScreen = ({ navigation }) => {
   const [isShowKeyboard, setIsShowKeyboard] = useState(false);
   const [state, setState] = useState(initialState);
 
@@ -107,7 +107,15 @@ export const RegistrationScreen = () => {
                   <Text style={styles.btnText}>Sign up</Text>
                 </TouchableOpacity>
               </View>
-              <Text style={styles.bottomText}>Have an account? Log in</Text>
+              <TouchableOpacity
+                activeOpacity={0.7}
+                style={styles.signInBtn}
+                onPress={() => navigation.navigate("Login")}
+              >
+                <Text style={styles.signInBtnText}>
+                  Have an account? Sign in
+                </Text>
+              </TouchableOpacity>
             </View>
           </KeyboardAvoidingView>
           <StatusBar style="auto" />
@@ -187,11 +195,13 @@ const styles = StyleSheet.create({
     fontFamily: "Roboto-Regular",
     fontSize: 16,
   },
-  bottomText: {
+  signInBtn: {
     marginTop: 16,
+    textAlign: "center",
+  },
+  signInBtnText: {
     fontFamily: "Roboto-Regular",
     fontSize: 16,
-    textAlign: "center",
     color: "#1B4371",
   },
 });
